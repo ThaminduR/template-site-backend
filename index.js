@@ -1,10 +1,10 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mysql = require('mysql');
 const app = express();
 var cookieParser = require('cookie-parser')
+const redis = require('redis');
 
 require('dotenv').config()
 
@@ -21,4 +21,4 @@ app.use('/', index);
 
 
 
-app.listen(port, address, () => console.log("App started. Running on localhost:" + process.env.PORT))
+app.listen(port, address, () => console.log("Server Started. Running on localhost:" + process.env.PORT))
