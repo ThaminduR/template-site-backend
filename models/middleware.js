@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
 const redis = require('redis')
 
-
 //Install redis on pc and run redis-server command to start the server
 //Redis client is created in this file as server will only occasionally query the db.
 exports.redis_client = function (req, res, next) {

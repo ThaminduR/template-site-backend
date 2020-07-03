@@ -1,12 +1,8 @@
 const database = require('../config/db')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs');
-const redis = require('redis');
 const jwtExpirySeconds = 15
 const jwtRefreshExpirySeconds = 1300000
-
-
-db = new database()
 
 exports.register = async function (req, res) {
 
@@ -15,6 +11,7 @@ exports.register = async function (req, res) {
     email = req.body.email
     password = req.body.password
 
+    db = new database()
     query = 'SELECT * FROM users WHERE email = ?'
 
     try {
@@ -51,6 +48,8 @@ exports.register = async function (req, res) {
 }
 
 exports.login = async function (req, res) {
+
+    db = new database()
     email = req.body.email
     password = req.body.password
     query = 'SELECT * FROM login_details WHERE email = ?'
@@ -115,7 +114,6 @@ exports.refresh = function (req, res) {
             //If the token is expired following ocde is executed
             refreshtokendata = jwt.verify(refreshtoken, process.env.REFRESHSECRET)
             email = refreshtokendata.email
-            console.log("Email:", email)
             client = req.redis
             client.get(email, function (err, value) {
                 if (err) {
@@ -126,7 +124,6 @@ exports.refresh = function (req, res) {
                     })
                 } else {
                     if (value == refreshtoken) {
-                        console.log("Equal")
                         user = {
                             email: email,
                         }
