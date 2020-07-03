@@ -1,7 +1,7 @@
 const database = require('../config/db')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs');
-const jwtExpirySeconds = 15
+const jwtExpirySeconds = 300
 const jwtRefreshExpirySeconds = 1300000
 
 exports.register = async function (req, res) {
