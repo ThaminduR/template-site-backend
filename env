@@ -1,5 +1,0 @@
-PORT = 3000
-SERVER_ADDRESS=127.0.0.1
-JWTSECRET = thisisjwttokensecret
-REFRESHSECRET = thisisrefreshsecret
-HASHSTR = comeseeenjoy
